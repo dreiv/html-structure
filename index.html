@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My page title</title>
+    <style>
+      :root {
+        --bg: #ffffff;
+        --text: #222222;
+        --accent: #bc4a00;
+        --gray: #575757;
+        --bg-alt: #f2f2f2;
+        --border: #dcdcdc;
+        --font-main:
+          system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #121212;
+          --text: #eeeeee;
+          --accent: #ff9d0a;
+          --gray: #b0b0b0;
+          --bg-alt: #1e1e1e;
+          --border: #383838;
+        }
+      }
+
+      body {
+        font-family: var(--font-main);
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+        line-height: 1.6;
+        background-color: var(--bg);
+        color: var(--text);
+      }
+
+      /* Layout & Components */
+      header {
+        border-bottom: 3px solid var(--accent);
+        margin-bottom: 2rem;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.2rem;
+        color: var(--accent);
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 600;
+        transition: color 0.2s;
+      }
+
+      nav a:hover {
+        color: var(--accent);
+      }
+
+      /* Search Form */
+      form {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      input[type="search"] {
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 0.4rem 0.8rem;
+        border-radius: 4px;
+      }
+
+      input[type="submit"] {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 0.4rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      /* Content Area */
+      h2,
+      h3 {
+        color: var(--accent);
+      }
+      h2 {
+        font-size: 1.8rem;
+        margin-top: 0;
+      }
+
+      article {
+        margin-bottom: 3rem;
+      }
+
+      aside {
+        background: var(--bg-alt);
+        padding: 1.5rem;
+        border-radius: 8px;
+        border-left: 5px solid var(--accent);
+      }
+
+      aside h2 {
+        font-size: 1.2rem;
+        margin-top: 0;
+      }
+      aside ul {
+        padding-left: 1.2rem;
+        margin-bottom: 0;
+      }
+      aside a {
+        color: var(--accent);
+      }
+
+      footer {
+        margin-top: 4rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+        font-size: 0.9rem;
+        color: var(--gray);
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Header</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Our team</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+
+      <form>
+        <input
+          type="search"
+          name="q"
+          placeholder="Search query"
+          aria-label="Search"
+        />
+        <input type="submit" value="Go!" />
+      </form>
+    </nav>
+
+    <main>
+      <article>
+        <h2>Article heading</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Donec a diam
+          lectus. Set sit amet ipsum mauris. Maecenas congue ligula as quam
+          viverra nec consectetur ant hendrerit. Donec et mollis dolor. Praesent
+          et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt
+          congue enim, ut porta lorem lacinia consectetur.
+        </p>
+
+        <section>
+          <h3>Subsection</h3>
+          <p>
+            Donec ut librero sed accu vehicula ultricies a non tortor. Lorem
+            ipsum dolor sit amet, consectetur adipisicing elit. Aenean ut
+            gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id
+            dolor.
+          </p>
+          <p>
+            Pelientesque auctor nisi id magna consequat sagittis. Curabitur
+            dapibus, enim sit amet elit pharetra tincidunt feugiat nist
+            imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed
+            odio eros.
+          </p>
+        </section>
+
+        <section>
+          <h3>Another subsection</h3>
+          <p>
+            Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum
+            soclis natoque penatibus et manis dis parturient montes, nascetur
+            ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at
+            sem facilisis semper ac in est.
+          </p>
+          <p>
+            Vivamus fermentum semper porta. Nunc diam velit, adipscing ut
+            tristique vitae sagittis vel odio. Maecenas convallis ullamcorper
+            ultricied. Curabitur ornare, ligula semper consectetur sagittis,
+            nisi diam iaculis velit, is fringille sem nunc vet mi.
+          </p>
+        </section>
+      </article>
+
+      <aside>
+        <h2>Related</h2>
+        <ul>
+          <li><a href="#">Oh I do like to be beside the seaside</a></li>
+          <li><a href="#">Oh I do like to be beside the sea</a></li>
+          <li><a href="#">Although in the North of England</a></li>
+          <li><a href="#">It never stops raining</a></li>
+          <li><a href="#">Oh well…</a></li>
+        </ul>
+      </aside>
+    </main>
+
+    <footer>
+      <p>©Copyright 2050 by nobody. All rights reversed.</p>
+    </footer>
+  </body>
+</html>
