@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Special Offers | TravelLabs</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .hero-offers {
+        min-height: 45vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          linear-gradient(135deg, #e11d48 0%, #4c0519 100%);
+        border-radius: 16px;
+        padding: 4rem 1.5rem;
+        color: white;
+        text-align: center;
+        margin-bottom: 3rem;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero-offers h2 {
+        color: #fff;
+        font-size: clamp(2.5rem, 7vw, 4rem);
+        margin-bottom: 1rem;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .offers-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: minmax(300px, auto);
+        grid-gap: 1.5rem;
+        grid-auto-flow: dense;
+        padding: 0;
+        list-style: none;
+        margin-bottom: 4rem;
+      }
+
+      .offer-tile {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: var(--bg-alt);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .offer-tile:nth-of-type(3n) {
+        grid-column: span 2;
+      }
+
+      .offer-tile:nth-of-type(5n) {
+        grid-row: span 2;
+      }
+
+      .offer-tile:hover,
+      .offer-tile:focus-within {
+        transform: translateY(-4px);
+        border-color: var(--accent);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .offer-link {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 100%;
+        width: 100%;
+        text-decoration: none;
+        outline: none;
+      }
+
+      .offer-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+        transition: transform 0.8s ease;
+      }
+
+      .offer-tile:hover .offer-img,
+      .offer-tile:focus-within .offer-img {
+        transform: scale(1.1);
+      }
+
+      .promo-badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: #e11d48;
+        color: white;
+        padding: 0.4rem 0.8rem;
+        font-weight: 800;
+        font-size: 0.8rem;
+        border-radius: 6px;
+        z-index: 4;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        text-transform: uppercase;
+      }
+
+      .offer-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.9) 0%,
+          transparent 70%
+        );
+        z-index: 2;
+      }
+
+      .offer-content {
+        position: relative;
+        z-index: 3;
+        padding: 1.5rem;
+        color: white;
+      }
+
+      .offer-content h3 {
+        margin: 0.5rem 0;
+        font-size: 1.4rem;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+      }
+
+      .price-tag {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
+      }
+
+      del {
+        font-size: 1rem;
+        opacity: 1;
+        color: #ffbaba;
+        text-decoration: line-through;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+      }
+
+      ins {
+        font-size: 1.7rem;
+        font-weight: 800;
+        text-decoration: none;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .tag-small {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(4px);
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      @media (max-width: 900px) {
+        .offers-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .offers-grid {
+          grid-template-columns: 1fr;
+        }
+        .offer-tile:nth-of-type(3n) {
+          grid-column: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav aria-label="Main Navigation">
+        <h1>TravelLabs</h1>
+        <ul>
+          <li><a href="#" aria-current="page">Offers</a></li>
+          <li><a href="#">My List</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="hero-offers">
+        <h2>Unbeatable Deals</h2>
+        <p>Exclusive travel bundles and seasonal discounts.</p>
+      </section>
+
+      <ul class="offers-grid">
+        <li class="offer-tile">
+          <article>
+            <a href="#" class="offer-link">
+              <span class="promo-badge">40% Off</span>
+              <img
+                src="https://picsum.photos/id/10/800"
+                alt="Mountain lake"
+                class="offer-img"
+                loading="lazy"
+              />
+              <div class="offer-overlay"></div>
+              <div class="offer-content">
+                <span class="tag-small">Nature</span>
+                <h3>Lakeview Weekend</h3>
+                <div class="price-tag">
+                  <del>$200</del>
+                  <ins>$120</ins>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="offer-tile">
+          <article>
+            <a href="#" class="offer-link">
+              <span class="promo-badge">Last Minute</span>
+              <img
+                src="https://picsum.photos/id/42/800"
+                alt="Coffee"
+                class="offer-img"
+                loading="lazy"
+              />
+              <div class="offer-overlay"></div>
+              <div class="offer-content">
+                <span class="tag-small">Foodie</span>
+                <h3>Barista Tour</h3>
+                <div class="price-tag">
+                  <del>$45</del>
+                  <ins>$25</ins>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="offer-tile">
+          <article>
+            <a href="#" class="offer-link">
+              <span class="promo-badge">Half Price</span>
+              <img
+                src="https://picsum.photos/id/1031/800"
+                alt="Suite"
+                class="offer-img"
+                loading="lazy"
+              />
+              <div class="offer-overlay"></div>
+              <div class="offer-content">
+                <span class="tag-small">Luxury</span>
+                <h3>Urban Suite</h3>
+                <div class="price-tag">
+                  <del>$350</del>
+                  <ins>$175</ins>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="offer-tile">
+          <article>
+            <a href="#" class="offer-link">
+              <span class="promo-badge">Adventure</span>
+              <img
+                src="https://picsum.photos/id/164/800"
+                alt="Waterfall"
+                class="offer-img"
+                loading="lazy"
+              />
+              <div class="offer-overlay"></div>
+              <div class="offer-content">
+                <span class="tag-small">Nature</span>
+                <h3>Hidden Falls</h3>
+                <div class="price-tag">
+                  <del>$80</del>
+                  <ins>$40</ins>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="offer-tile">
+          <article>
+            <a href="#" class="offer-link">
+              <span class="promo-badge">Best Seller</span>
+              <img
+                src="https://picsum.photos/id/611/800"
+                alt="Cliffs"
+                class="offer-img"
+                loading="lazy"
+              />
+              <div class="offer-overlay"></div>
+              <div class="offer-content">
+                <span class="tag-small">Coastal</span>
+                <h3>Cliffside Path</h3>
+                <div class="price-tag">
+                  <del>$120</del>
+                  <ins>$89</ins>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="offer-tile">
+          <article>
+            <a href="#" class="offer-link">
+              <span class="promo-badge">60% Off</span>
+              <img
+                src="https://picsum.photos/id/1080/800"
+                alt="Kayaking"
+                class="offer-img"
+                loading="lazy"
+              />
+              <div class="offer-overlay"></div>
+              <div class="offer-content">
+                <span class="tag-small">Sport</span>
+                <h3>River Kayaking</h3>
+                <div class="price-tag">
+                  <del>$75</del>
+                  <ins>$30</ins>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="offer-tile">
+          <article>
+            <a href="#" class="offer-link">
+              <span class="promo-badge">New</span>
+              <img
+                src="https://picsum.photos/id/674/800"
+                alt="Market"
+                class="offer-img"
+                loading="lazy"
+              />
+              <div class="offer-overlay"></div>
+              <div class="offer-content">
+                <span class="tag-small">Culture</span>
+                <h3>Night Market VIP</h3>
+                <div class="price-tag">
+                  <del>$30</del>
+                  <ins>$15</ins>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="offer-tile">
+          <article>
+            <a href="#" class="offer-link">
+              <span class="promo-badge">Family Deal</span>
+              <img
+                src="https://picsum.photos/id/324/800"
+                alt="Birds"
+                class="offer-img"
+                loading="lazy"
+              />
+              <div class="offer-overlay"></div>
+              <div class="offer-content">
+                <span class="tag-small">Education</span>
+                <h3>Sanctuary Pass</h3>
+                <div class="price-tag">
+                  <del>$60</del>
+                  <ins>$35</ins>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="offer-tile">
+          <article>
+            <a href="#" class="offer-link">
+              <span class="promo-badge">Save $100</span>
+              <img
+                src="https://picsum.photos/id/1053/800"
+                alt="Resort"
+                class="offer-img"
+                loading="lazy"
+              />
+              <div class="offer-overlay"></div>
+              <div class="offer-content">
+                <span class="tag-small">Relax</span>
+                <h3>Riverside Spa</h3>
+                <div class="price-tag">
+                  <del>$400</del>
+                  <ins>$300</ins>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="offer-tile">
+          <article>
+            <a href="#" class="offer-link">
+              <span class="promo-badge">Limited</span>
+              <img
+                src="https://picsum.photos/id/249/800"
+                alt="Opera"
+                class="offer-img"
+                loading="lazy"
+              />
+              <div class="offer-overlay"></div>
+              <div class="offer-content">
+                <span class="tag-small">Culture</span>
+                <h3>Opera Nights</h3>
+                <div class="price-tag">
+                  <del>$150</del>
+                  <ins>$99</ins>
+                </div>
+              </div>
+            </a>
+          </article>
+        </li>
+      </ul>
+    </main>
+
+    <footer>
+      <p>© 2026 TravelLabs • Special Offers</p>
+    </footer>
+  </body>
+</html>
