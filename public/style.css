@@ -1,0 +1,128 @@
+:root {
+  --bg: #ffffff;
+  --text: #222222;
+  --accent: #bc4a00;
+  --gray: #575757;
+  --bg-alt: #f2f2f2;
+  --border: #dcdcdc;
+  --font-main: system-ui, -apple-system, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --text: #eeeeee;
+    --accent: #ff9d0a;
+    --gray: #b0b0b0;
+    --bg-alt: #1e1e1e;
+    --border: #383838;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  line-height: 1.6;
+  background-color: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--accent);
+  line-height: 1.2;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+header {
+  border-bottom: 3px solid var(--accent);
+  margin-bottom: 2rem;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  font-weight: 600;
+  color: var(--text);
+}
+
+form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input[type="search"] {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+aside {
+  background: var(--bg-alt);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 5px solid var(--accent);
+  margin-top: 2rem;
+}
+
+footer {
+  margin-top: 4rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--gray);
+  text-align: center;
+}

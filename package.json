@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "live-server .",
-    "start": "serve ."
+    "dev": "live-server public",
+    "start": "serve public"
   },
   "devDependencies": {
     "live-server": "^1.2.2",
