@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Holidays | TravelLabs</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .booking-layout {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        gap: 3rem;
+        margin-top: 1rem;
+        align-items: start;
+      }
+
+      .filter-sidebar {
+        background: var(--bg-alt);
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        position: sticky;
+        top: 2rem;
+      }
+
+      .filter-group {
+        margin-bottom: 2rem;
+        border: none;
+        padding: 0;
+      }
+
+      .filter-group legend {
+        font-weight: 800;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1rem;
+        letter-spacing: 0.05em;
+      }
+
+      .filter-option {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+        cursor: pointer;
+        color: var(--text);
+      }
+
+      .range-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .range-input {
+        width: 100%;
+        accent-color: var(--accent);
+        cursor: pointer;
+      }
+
+      .range-limits {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--gray);
+      }
+
+      .package-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .holiday-card {
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .holiday-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent);
+      }
+
+      .card-media {
+        aspect-ratio: 16/9;
+        background-color: var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gray);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.8rem;
+      }
+
+      .card-body {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        flex-grow: 1;
+      }
+
+      .package-meta {
+        color: var(--accent);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        font-weight: 800;
+        display: block;
+      }
+
+      .package-title {
+        font-size: 1.25rem;
+        margin: 0;
+        color: var(--text);
+      }
+
+      .package-desc {
+        font-size: 0.9rem;
+        color: var(--gray);
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      .price-container {
+        margin-top: auto;
+        padding-top: 1rem;
+      }
+
+      .price-tag {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--text);
+      }
+
+      .price-tag small {
+        font-size: 0.8rem;
+        color: var(--gray);
+        font-weight: 400;
+      }
+
+      .card-actions {
+        margin-top: 1rem;
+      }
+
+      @media (max-width: 900px) {
+        .booking-layout {
+          grid-template-columns: 1fr;
+        }
+        .filter-sidebar {
+          position: static;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav aria-label="Main Navigation">
+        <h1>Book Holidays</h1>
+        <ul>
+          <li><a href="#" aria-current="page">Packages</a></li>
+          <li><a href="#">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="booking-layout">
+      <aside class="filter-sidebar">
+        <form action="#" method="GET">
+          <fieldset class="filter-group">
+            <legend>Destination</legend>
+            <label class="filter-option">
+              <input type="checkbox" name="dest" value="europe" /> Europe
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" name="dest" value="asia" /> Asia
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" name="dest" value="americas" /> Americas
+            </label>
+          </fieldset>
+
+          <fieldset class="filter-group">
+            <legend>Budget Range</legend>
+            <div class="range-container">
+              <input
+                type="range"
+                class="range-input"
+                id="budget"
+                name="budget"
+                min="500"
+                max="5000"
+                step="100"
+                aria-valuemin="500"
+                aria-valuemax="5000"
+              />
+              <div class="range-limits" aria-hidden="true">
+                <span>$500</span>
+                <span>$5000</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="btn">Update Search</button>
+        </form>
+      </aside>
+
+      <section class="package-grid" aria-label="Available Holiday Packages">
+        <article class="holiday-card">
+          <div class="card-media" aria-hidden="true">Amalfi Coast</div>
+          <div class="card-body">
+            <header>
+              <strong class="package-meta">7 Nights • All Inclusive</strong>
+              <h2 class="package-title">Italian Summer Retreat</h2>
+            </header>
+            <p class="package-desc">
+              Private villa access, guided vineyard tours, and coastal transit
+              included.
+            </p>
+            <div class="price-container">
+              <div class="price-tag">$1,299 <small>/ person</small></div>
+              <div class="card-actions">
+                <a href="#" class="btn">View Deal</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="holiday-card">
+          <div class="card-media" aria-hidden="true">Kyoto Temple</div>
+          <div class="card-body">
+            <header>
+              <strong class="package-meta">10 Nights • Cultural</strong>
+              <h2 class="package-title">Japan Heritage Tour</h2>
+            </header>
+            <p class="package-desc">
+              Shinkansen rail pass, boutique ryokan stays, and tea ceremony
+              workshops.
+            </p>
+            <div class="price-container">
+              <div class="price-tag">$2,450 <small>/ person</small></div>
+              <div class="card-actions">
+                <a href="#" class="btn">View Deal</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 TravelLabs • Booking Engine</p>
+    </footer>
+  </body>
+</html>

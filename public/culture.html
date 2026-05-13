@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Culture Guide | TravelLabs</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .culture-layout {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 3rem;
+        margin-top: 1rem;
+        align-items: start;
+      }
+
+      .content-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .culture-card {
+        background: var(--bg-alt);
+        padding: 2.5rem;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+      }
+
+      .culture-header {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .culture-header h2 {
+        margin: 0.5rem 0;
+        font-size: 1.4rem;
+        color: var(--text);
+      }
+
+      .culture-header p {
+        margin: 0;
+        color: var(--gray);
+        font-size: 0.95rem;
+      }
+
+      .tag {
+        display: inline-block;
+        font-size: 0.65rem;
+        padding: 0.25rem 0.6rem;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: 800;
+        background: rgba(188, 74, 0, 0.1);
+        color: var(--accent);
+      }
+
+      .article-section {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--text);
+      }
+
+      details {
+        border: 1px solid var(--border);
+        background: var(--bg);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      summary {
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--accent);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+      }
+
+      summary::after {
+        content: "＋";
+        font-size: 1.1rem;
+        transition: transform 0.2s;
+      }
+
+      details[open] summary::after {
+        content: "－";
+      }
+
+      .details-content {
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+        margin-top: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .info-sidebar {
+        margin-top: 0;
+        position: sticky;
+        top: 2rem;
+      }
+
+      .phrase-box {
+        padding: 0.5rem 0;
+      }
+
+      .phrase-box h3 {
+        margin-top: 0;
+        font-size: 1.1rem;
+      }
+
+      .specs-list div {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.25rem;
+        border-bottom: 1px dashed var(--border);
+      }
+
+      .specs-list dt {
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--gray);
+      }
+
+      .specs-list dd {
+        margin: 0;
+        font-weight: 600;
+        color: var(--accent);
+      }
+
+      @media (max-width: 900px) {
+        .culture-layout {
+          grid-template-columns: 1fr;
+        }
+        .info-sidebar {
+          position: static;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav aria-label="Main Navigation">
+        <h1>Culture Guide</h1>
+        <ul>
+          <li><a href="#" aria-current="page">Explorer</a></li>
+          <li><a href="index.html">Library</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="culture-layout">
+      <div class="content-stack">
+        <article class="culture-card">
+          <header class="culture-header">
+            <strong class="tag">Regional Spotlight</strong>
+            <h2>Mediterranean Traditions</h2>
+            <p>
+              Exploring the intersection of culinary heritage and social
+              etiquette.
+            </p>
+          </header>
+
+          <section class="article-section">
+            <p>
+              The Mediterranean lifestyle is characterized by a unique blend of
+              historical influences, geographical proximity to the sea, and a
+              deep-rooted emphasis on communal experiences. Social life often
+              revolves around the table, where meals are not merely for
+              sustenance but serve as critical anchors for family and community
+              bonding.
+            </p>
+          </section>
+
+          <details>
+            <summary>Dining Etiquette & Social Norms</summary>
+            <div class="details-content">
+              <ul>
+                <li>
+                  <strong>Timing:</strong> Expect dinner to start significantly
+                  later than in northern regions, often after 8:00 PM.
+                </li>
+                <li>
+                  <strong>The <i lang="it">Passeggiata</i>:</strong> In many
+                  coastal towns, an evening stroll before or after dinner is a
+                  vital social ritual.
+                </li>
+                <li>
+                  <strong>Service Charge:</strong> Tipping is appreciated but
+                  often a small <i lang="it">coperto</i> (cover charge) is
+                  already included in the bill.
+                </li>
+              </ul>
+            </div>
+          </details>
+
+          <details>
+            <summary>Social Gift Giving</summary>
+            <div class="details-content">
+              <p>
+                When invited to a local home, it is customary to bring a small
+                gift. High-quality pastries, a bottle of regional wine, or
+                flowers are standard gestures of appreciation. Avoid bringing
+                chrysanthemums, as they are often associated with mourning in
+                specific sub-cultures.
+              </p>
+            </div>
+          </details>
+        </article>
+
+        <article class="culture-card">
+          <header class="culture-header">
+            <strong class="tag">Language & Dialect</strong>
+            <h2>The Linguistic Mosaic</h2>
+            <p>
+              Navigating the nuances between official languages and regional
+              dialects.
+            </p>
+          </header>
+          <section class="article-section">
+            <p>
+              While official languages dominate administration and media,
+              regional identities are fiercely preserved through local dialects.
+              Understanding the distinction is key to deeper cultural immersion
+              and shows respect for local heritage.
+            </p>
+          </section>
+        </article>
+      </div>
+
+      <aside class="info-sidebar">
+        <section class="phrase-box">
+          <h3>Quick Phrases</h3>
+          <p
+            style="
+              font-size: 0.85rem;
+              color: var(--gray);
+              margin-bottom: 1.5rem;
+            "
+          >
+            Essential vocabulary for your next Mediterranean journey.
+          </p>
+
+          <dl class="specs-list">
+            <div>
+              <dt>Hello</dt>
+              <dd><i lang="it">Buongiorno</i></dd>
+            </div>
+            <div>
+              <dt>Thank You</dt>
+              <dd><i lang="it">Grazie</i></dd>
+            </div>
+            <div>
+              <dt>Please</dt>
+              <dd><i lang="it">Per favore</i></dd>
+            </div>
+            <div>
+              <dt>Excuse Me</dt>
+              <dd><i lang="it">Mi scusi</i></dd>
+            </div>
+            <div>
+              <dt>The Bill</dt>
+              <dd><i lang="it">Il conto</i></dd>
+            </div>
+          </dl>
+
+          <section>
+            <h4
+              style="
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+              "
+            >
+              Linguistic Tip
+            </h4>
+            <p style="font-size: 0.85rem; color: var(--gray); line-height: 1.5">
+              In many Mediterranean regions, "<i lang="it">Ciao</i>" is used for
+              both 'Hello' and 'Goodbye', but in formal settings, "<i lang="it"
+                >Buongiorno</i
+              >" (Good morning) or "<i lang="it">Buonasera</i>" (Good evening)
+              is preferred.
+            </p>
+          </section>
+        </section>
+      </aside>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 TravelLabs • Culture Guide</p>
+    </footer>
+  </body>
+</html>
