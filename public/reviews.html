@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reviews | TravelLabs</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .reviews-layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 3rem;
+        margin-top: 1rem;
+        align-items: start;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 1.5rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 1.5rem;
+      }
+
+      .search-bar {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .search-bar input[type="search"] {
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 0.6rem 1rem;
+        border-radius: 6px;
+        min-width: 300px;
+        outline: none;
+      }
+
+      .search-bar input[type="search"]:focus {
+        border-color: var(--accent);
+      }
+
+      .sentiment-sidebar {
+        position: sticky;
+        top: 2rem;
+        background: var(--bg-alt);
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+      }
+
+      .rating-overview {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .big-score {
+        display: block;
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: var(--accent);
+        line-height: 1;
+      }
+
+      .score-label {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--gray);
+        font-weight: 700;
+      }
+
+      .rating-bar-group {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .bar-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .bar-row dt {
+        font-size: 0.75rem;
+        font-weight: 700;
+        min-width: 25px;
+      }
+
+      .bar-row dd {
+        margin: 0;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.75rem;
+        color: var(--gray);
+      }
+
+      meter {
+        appearance: none;
+        flex: 1;
+        height: 6px;
+        background: var(--border);
+        border-radius: 10px;
+        border: none;
+      }
+      meter::-webkit-meter-bar {
+        background: var(--border);
+        border: none;
+        height: 6px;
+      }
+      meter::-webkit-meter-optimum-value {
+        background: var(--accent);
+        border-radius: 10px;
+      }
+      meter::-moz-meter-bar {
+        background: var(--accent);
+        border-radius: 10px;
+      }
+
+      .review-stream {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+      }
+
+      .review-card {
+        background: transparent;
+      }
+
+      .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .user-avatar {
+        width: 44px;
+        height: 44px;
+        background: var(--accent);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+      }
+
+      .author {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--text);
+      }
+
+      time {
+        font-size: 0.8rem;
+        color: var(--gray);
+      }
+
+      .review-stars {
+        color: var(--accent);
+        letter-spacing: 2px;
+        font-size: 0.9rem;
+      }
+
+      .review-content h4 {
+        margin: 0.5rem 0;
+        font-size: 1.2rem;
+        color: var(--text);
+      }
+
+      .review-content blockquote {
+        margin: 0.75rem 0;
+        padding: 0;
+        font-style: normal;
+        line-height: 1.7;
+        color: var(--text);
+      }
+
+      .verified-badge {
+        font-size: 0.65rem;
+        background: rgba(34, 197, 94, 0.1);
+        color: #22c55e;
+        padding: 0.2rem 0.6rem;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+
+      .review-meta {
+        margin-top: 1.25rem;
+      }
+
+      .btn-sm {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        border-radius: 6px;
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--gray);
+        border: 1px solid var(--border);
+        transition: all 0.2s ease;
+      }
+
+      .btn-outline:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: var(--bg-alt);
+      }
+
+      @media (max-width: 850px) {
+        .reviews-layout {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .sentiment-sidebar {
+          position: static;
+        }
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1.5rem;
+        }
+        .search-bar {
+          width: 100%;
+        }
+        .search-bar input[type="search"] {
+          min-width: auto;
+          flex: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Review Stream</h1>
+      <form action="#" class="search-bar">
+        <input
+          type="search"
+          placeholder="Search reviews (e.g. 'Amalfi' or 'verified')..."
+          aria-label="Search reviews"
+        />
+        <button type="submit" class="btn btn-sm">Search</button>
+      </form>
+    </header>
+
+    <main class="reviews-layout">
+      <aside class="sentiment-sidebar">
+        <section class="rating-overview">
+          <h2>Review Summary</h2>
+          <data class="big-score" value="4.7">4.7</data>
+          <span class="score-label">Global Rating</span>
+          <p>Based on <data value="1240">1,240</data> reviews</p>
+        </section>
+
+        <section class="rating-distribution">
+          <h3>Rating Distribution</h3>
+          <dl class="rating-bar-group">
+            <div class="bar-row">
+              <dt>5★</dt>
+              <dd>
+                <meter min="0" max="100" value="70" title="70 percent">
+                  70%
+                </meter>
+                <span>70%</span>
+              </dd>
+            </div>
+
+            <div class="bar-row">
+              <dt>4★</dt>
+              <dd>
+                <meter min="0" max="100" value="20" title="20 percent">
+                  20%
+                </meter>
+                <span>20%</span>
+              </dd>
+            </div>
+
+            <div class="bar-row">
+              <dt>3★</dt>
+              <dd>
+                <meter min="0" max="100" value="5" title="5 percent">5%</meter>
+                <span>5%</span>
+              </dd>
+            </div>
+
+            <div class="bar-row">
+              <dt>2★</dt>
+              <dd>
+                <meter min="0" max="100" value="3" title="3 percent">3%</meter>
+                <span>3%</span>
+              </dd>
+            </div>
+
+            <div class="bar-row">
+              <dt>1★</dt>
+              <dd>
+                <meter min="0" max="100" value="2" title="2 percent">2%</meter>
+                <span>2%</span>
+              </dd>
+            </div>
+          </dl>
+        </section>
+      </aside>
+
+      <section class="review-stream">
+        <article class="review-card">
+          <header class="review-header">
+            <div class="user-info">
+              <div class="user-avatar" aria-hidden="true">AM</div>
+              <div class="user-details">
+                <address class="author">Anna Miller</address>
+                <time datetime="2026-05-10">May 10, 2026</time>
+              </div>
+            </div>
+            <data class="review-stars" value="5" aria-label="5 out of 5 stars"
+              >★★★★★</data
+            >
+          </header>
+
+          <div class="review-content">
+            <strong class="verified-badge">Verified Trip</strong>
+            <h4>Absolutely breathtaking experience!</h4>
+            <blockquote>
+              <p>
+                The Amalfi Coast Explorer package was everything I hoped for.
+                The cliffside hotel had views that photos simply cannot capture.
+              </p>
+            </blockquote>
+          </div>
+
+          <footer class="review-meta">
+            <button class="btn btn-sm btn-outline">
+              Helpful (<data value="12">12</data>)
+            </button>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <header class="review-header">
+            <div class="user-info">
+              <div class="user-avatar" aria-hidden="true">JD</div>
+              <div class="user-details">
+                <address class="author">James Doe</address>
+                <time datetime="2026-04-28">April 28, 2026</time>
+              </div>
+            </div>
+            <data class="review-stars" value="4" aria-label="4 out of 5 stars"
+              >★★★★☆</data
+            >
+          </header>
+
+          <div class="review-content">
+            <strong class="verified-badge">Verified Trip</strong>
+            <h4>Great villa, but many stairs.</h4>
+            <blockquote>
+              <p>
+                Santorini Sunsets was stunning, but be prepared for a lot of
+                walking. The private balcony was the highlight of our evenings.
+              </p>
+            </blockquote>
+          </div>
+
+          <footer class="review-meta">
+            <button class="btn btn-sm btn-outline">
+              Helpful (<data value="4">4</data>)
+            </button>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <header class="review-header">
+            <div class="user-info">
+              <div class="user-avatar" aria-hidden="true">SC</div>
+              <div class="user-details">
+                <address class="author">Sarah Chen</address>
+                <time datetime="2026-04-15">April 15, 2026</time>
+              </div>
+            </div>
+            <data class="review-stars" value="5" aria-label="5 out of 5 stars"
+              >★★★★★</data
+            >
+          </header>
+
+          <div class="review-content">
+            <strong class="verified-badge">Verified Trip</strong>
+            <h4>Tuscany done right.</h4>
+            <blockquote>
+              <p>
+                The vineyard stay was peaceful and authentic. The cooking
+                classes were the best part of our entire Italy trip!
+              </p>
+            </blockquote>
+          </div>
+
+          <footer class="review-meta">
+            <button class="btn btn-sm btn-outline">
+              Helpful (<data value="21">21</data>)
+            </button>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <header class="review-header">
+            <div class="user-info">
+              <div class="user-avatar" aria-hidden="true">MK</div>
+              <div class="user-details">
+                <address class="author">Marcus Kane</address>
+                <time datetime="2026-03-20">March 20, 2026</time>
+              </div>
+            </div>
+            <data class="review-stars" value="5" aria-label="5 out of 5 stars"
+              >★★★★★</data
+            >
+          </header>
+          <div class="review-content">
+            <strong class="verified-badge">Verified Trip</strong>
+            <h4>Majorca was perfect for the kids!</h4>
+            <blockquote>
+              <p>
+                The Beach Club resort exceeded expectations. Everything from the
+                kids' club to the private beach access made our family holiday
+                stress-free and enjoyable.
+              </p>
+            </blockquote>
+          </div>
+          <footer class="review-meta">
+            <button class="btn btn-sm btn-outline">
+              Helpful (<data value="8">8</data>)
+            </button>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <header class="review-header">
+            <div class="user-info">
+              <div class="user-avatar" aria-hidden="true">LL</div>
+              <div class="user-details">
+                <address class="author">Linda Lopez</address>
+                <time datetime="2026-02-14">February 14, 2026</time>
+              </div>
+            </div>
+            <data class="review-stars" value="3" aria-label="3 out of 5 stars"
+              >★★★☆☆</data
+            >
+          </header>
+          <div class="review-content">
+            <strong class="verified-badge">Verified Trip</strong>
+            <h4>Beautiful Alps, but tough hiking.</h4>
+            <blockquote>
+              <p>
+                The scenery in the French Alps is unbeatable, but the 'guided
+                routes' were much more strenuous than advertised. Make sure you
+                are in peak fitness before booking.
+              </p>
+            </blockquote>
+          </div>
+          <footer class="review-meta">
+            <button class="btn btn-sm btn-outline">
+              Helpful (<data value="15">15</data>)
+            </button>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <header class="review-header">
+            <div class="user-info">
+              <div class="user-avatar" aria-hidden="true">DB</div>
+              <div class="user-details">
+                <address class="author">David Byrne</address>
+                <time datetime="2026-01-05">January 5, 2026</time>
+              </div>
+            </div>
+            <data class="review-stars" value="4" aria-label="4 out of 5 stars"
+              >★★★★☆</data
+            >
+          </header>
+          <div class="review-content">
+            <strong class="verified-badge">Verified Trip</strong>
+            <h4>History lover's dream in Crete.</h4>
+            <blockquote>
+              <p>
+                Knossos was fascinating. The package was well-organized, though
+                I wish we had one more day in Chania harbor. Highly recommend
+                for history buffs.
+              </p>
+            </blockquote>
+          </div>
+          <footer class="review-meta">
+            <button class="btn btn-sm btn-outline">
+              Helpful (<data value="3">3</data>)
+            </button>
+          </footer>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 TravelLabs • Review Stream</p>
+    </footer>
+  </body>
+</html>
