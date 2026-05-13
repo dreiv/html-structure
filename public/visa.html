@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visa Requirements | TravelLabs</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .compliance-layout {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 3rem;
+        margin-top: 1rem;
+        align-items: start;
+      }
+
+      header nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 1.5rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 1.5rem;
+      }
+
+      header ul {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+        margin: 0;
+        padding: 0;
+      }
+
+      header a {
+        text-decoration: none;
+        color: var(--gray);
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      header a[aria-current="page"] {
+        color: var(--accent);
+      }
+
+      header a:hover {
+        color: var(--accent);
+      }
+
+      .requirement-group {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .visa-card {
+        background: var(--bg-alt);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+      }
+
+      .matrix-header {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .matrix-header h2 {
+        margin: 0.5rem 0;
+        font-size: 1.4rem;
+        color: var(--text);
+      }
+
+      .matrix-header p {
+        margin: 0;
+        color: var(--gray);
+        font-size: 0.95rem;
+      }
+
+      .specs-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .specs-list dt {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--gray);
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+
+      .specs-list dd {
+        margin: 0;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--text);
+      }
+
+      .specs-list dd data {
+        color: var(--accent);
+      }
+
+      details {
+        border: 1px solid var(--border);
+        background: var(--bg);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      summary {
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--accent);
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      summary::after {
+        content: "＋";
+        font-size: 1.1rem;
+        transition: transform 0.2s;
+      }
+
+      details[open] summary::after {
+        content: "－";
+      }
+
+      .details-content {
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: var(--text);
+      }
+
+      .status-tag {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.6rem;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+      .status-required {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+      }
+      .status-waived {
+        background: rgba(34, 197, 94, 0.1);
+        color: #22c55e;
+      }
+
+      .info-sidebar {
+        position: sticky;
+        top: 2rem;
+        margin-top: 0;
+      }
+
+      .info-panel {
+        background: var(--bg-alt);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .info-panel h3 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .info-panel p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: var(--gray);
+        line-height: 1.5;
+      }
+
+      hr {
+        border: 0;
+        border-top: 1px solid var(--border);
+        margin: 1rem 0;
+        width: 100%;
+      }
+
+      .info-panel h4 {
+        margin: 0;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text);
+      }
+
+      .link-list {
+        list-style: none;
+        padding: 0;
+        margin: 0.5rem 0 0 0;
+        font-size: 0.9rem;
+      }
+
+      .link-list li {
+        margin-bottom: 0.6rem;
+      }
+
+      .link-list a {
+        color: var(--accent);
+        text-decoration: none;
+        display: inline-block;
+        transition: transform 0.2s;
+      }
+
+      .link-list a:hover {
+        text-decoration: underline;
+        transform: translateX(3px);
+      }
+
+      @media (max-width: 850px) {
+        .compliance-layout {
+          grid-template-columns: 1fr;
+        }
+        .info-sidebar {
+          position: static;
+        }
+        header nav {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1>Compliance Matrix</h1>
+        <ul>
+          <li><a href="#" aria-current="page">Schedule</a></li>
+          <li><a href="#">My Portal</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="compliance-layout">
+      <section class="requirement-group">
+        <article class="visa-card">
+          <header class="matrix-header">
+            <span class="status-tag status-required">Visa Required</span>
+            <h2>Schengen Area Protocol</h2>
+            <p>
+              Standard entry regulations for short-stay tourism and business.
+            </p>
+          </header>
+
+          <dl class="specs-list">
+            <div>
+              <dt>Max Stay</dt>
+              <dd><data value="90">90 Days</data></dd>
+            </div>
+            <div>
+              <dt>Processing Time</dt>
+              <dd>15 Business Days</dd>
+            </div>
+            <div>
+              <dt>Cost</dt>
+              <dd><data value="80">€80.00</data></dd>
+            </div>
+            <div>
+              <dt>Validity</dt>
+              <dd><data value="180">6 Months</data></dd>
+            </div>
+          </dl>
+
+          <details>
+            <summary>View Required Documentation</summary>
+            <div class="details-content">
+              <ul>
+                <li>Passport valid for at least 3 months beyond departure.</li>
+                <li>Proof of accommodation and return flight.</li>
+                <li>Travel health insurance (min. €30,000 coverage).</li>
+              </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="visa-card">
+          <header class="matrix-header">
+            <span class="status-tag status-waived">Visa Waived</span>
+            <h2>UK Standard Visitor</h2>
+            <p>Entry protocols for transit and short-term visits.</p>
+          </header>
+
+          <dl class="specs-list">
+            <div>
+              <dt>Max Stay</dt>
+              <dd><data value="180">6 Months</data></dd>
+            </div>
+            <div>
+              <dt>Electronic Auth</dt>
+              <dd>
+                Required (<abbr title="Electronic Travel Authorization"
+                  >ETA</abbr
+                >)
+              </dd>
+            </div>
+            <div>
+              <dt>Passport Type</dt>
+              <dd>Biometric Preferred</dd>
+            </div>
+            <div>
+              <dt>Restrictions</dt>
+              <dd>No Paid Work</dd>
+            </div>
+          </dl>
+
+          <details>
+            <summary>Health & Vaccination Rules</summary>
+            <div class="details-content">
+              <p>
+                Currently no mandatory vaccinations are required for entry from
+                your current jurisdiction. Routine immunizations are
+                recommended.
+              </p>
+            </div>
+          </details>
+        </article>
+      </section>
+
+      <aside class="info-sidebar">
+        <div class="info-panel">
+          <h3>Regulatory Notice</h3>
+          <p>
+            Visa requirements are subject to change based on bilateral
+            agreements and global health protocols.
+          </p>
+          <hr />
+          <h4>Helpful Links</h4>
+          <ul class="link-list">
+            <li><a href="#">Embassy Directory</a></li>
+            <li><a href="#">Photo Specifications</a></li>
+            <li><a href="#">Official Application Portal</a></li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 TravelLabs • Compliance Matrix Module</p>
+    </footer>
+  </body>
+</html>
