@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exchange Dashboard | TravelLabs</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .currency-layout {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 3rem;
+        margin-top: 1rem;
+        align-items: start;
+      }
+
+      .converter-box {
+        background: var(--accent);
+
+        background: linear-gradient(135deg, var(--accent) 0%, #334155 100%);
+        padding: 2.5rem;
+        border-radius: 12px;
+        color: white;
+        margin-bottom: 3rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .converter-form {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .input-group label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        opacity: 0.9;
+        color: white;
+      }
+
+      .input-group input,
+      .input-group select,
+      .input-group output {
+        padding: 1rem;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        font-size: 1.2rem;
+        font-weight: 700;
+
+        background-color: var(--bg);
+        color: var(--text);
+        width: 100%;
+      }
+
+      .input-group output {
+        display: block;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .input-group input:focus,
+      .input-group select:focus {
+        outline: none;
+        border-color: white;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+      }
+
+      .exchange-icon {
+        font-size: 1.5rem;
+        padding-top: 1.5rem;
+        user-select: none;
+      }
+
+      .rates-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
+
+      .rates-table th {
+        text-align: left;
+        padding: 1rem;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: var(--gray);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .rates-table td {
+        padding: 1.2rem 1rem;
+        border-bottom: 1px solid var(--border);
+        font-weight: 600;
+      }
+
+      .trend-up {
+        color: #22c55e;
+      }
+      .trend-down {
+        color: #ef4444;
+      }
+
+      .info-sidebar {
+        margin-top: 0;
+        position: sticky;
+        top: 2rem;
+      }
+
+      .price-index {
+        padding: 0.5rem 0;
+      }
+
+      .specs-list div {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px dashed var(--border);
+      }
+
+      @media (max-width: 900px) {
+        .currency-layout {
+          grid-template-columns: 1fr;
+        }
+        .converter-form {
+          grid-template-columns: 1fr;
+        }
+        .exchange-icon {
+          transform: rotate(90deg);
+          padding: 0;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1>Exchange Dashboard</h1>
+        <ul>
+          <li><a href="#" aria-current="page">Rates</a></li>
+          <li><a href="index.html">History</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="currency-layout">
+      <section aria-label="Currency Converter">
+        <div class="converter-box">
+          <form class="converter-form">
+            <div class="input-group">
+              <label for="from-amount">From</label>
+              <input type="number" id="from-amount" value="100" step="0.01" />
+              <select id="from-currency" aria-label="Source Currency">
+                <option value="EUR">EUR - Euro</option>
+                <option value="USD">USD - US Dollar</option>
+              </select>
+            </div>
+
+            <div class="exchange-icon" aria-hidden="true">⇌</div>
+
+            <div class="input-group">
+              <label for="to-amount">To (Result)</label>
+              <output id="to-amount" for="from-amount from-currency to-currency"
+                >108.42</output
+              >
+              <select id="to-currency" aria-label="Target Currency">
+                <option value="USD">USD - US Dollar</option>
+                <option value="EUR">EUR - Euro</option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <section>
+          <h3>Live Market Rates</h3>
+          <table class="rates-table">
+            <thead>
+              <tr>
+                <th scope="col">Currency</th>
+                <th scope="col">Rate</th>
+                <th scope="col">Change (24h)</th>
+                <th scope="col">Purchasing Power</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><dfn title="United States Dollar">USD</dfn></td>
+                <td>1.0842</td>
+                <td class="trend-up">+0.24%</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td><dfn title="British Pound Sterling">GBP</dfn></td>
+                <td>0.8541</td>
+                <td class="trend-down">-0.12%</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td><dfn title="Japanese Yen">JPY</dfn></td>
+                <td>162.44</td>
+                <td class="trend-up">+1.05%</td>
+                <td>Medium</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </section>
+
+      <aside class="info-sidebar">
+        <div class="price-index">
+          <h3>Local Price Index</h3>
+          <p>
+            Estimated daily costs for a comfortable stay in your destination.
+          </p>
+          <hr />
+          <dl class="specs-list">
+            <div>
+              <dt>Coffee</dt>
+              <dd>€3.50</dd>
+            </div>
+            <div>
+              <dt>Meal for 2</dt>
+              <dd>€55.00</dd>
+            </div>
+            <div>
+              <dt>Transit Pass</dt>
+              <dd>€7.00</dd>
+            </div>
+          </dl>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 TravelLabs • Exchange Dashboard</p>
+    </footer>
+  </body>
+</html>
