@@ -76,38 +76,28 @@
         outline-offset: -1px;
       }
 
-      .btn-search {
-        padding: 0.8rem 1.5rem;
+      .btn {
         height: 3.25rem;
         border-radius: 6px;
         font-size: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
       }
 
-      /* Responsive: 2x2 Grid for Tablet */
       @media (max-width: 950px) {
         .search-container {
           grid-template-columns: 1fr 1fr;
         }
-
         .btn-search {
           grid-column: span 2;
         }
       }
 
-      /* Responsive: Single Column for Mobile */
       @media (max-width: 550px) {
         .search-container {
           grid-template-columns: 1fr;
         }
-
         .btn-search {
           grid-column: span 1;
         }
-
         .hero {
           min-height: 50vh;
           padding: 3rem 1rem;
@@ -134,7 +124,7 @@
       <nav>
         <h1>FlightFinder</h1>
         <ul>
-          <li><a href="#">Flights</a></li>
+          <li><a href="#" aria-current="page">Flights</a></li>
           <li><a href="#">My Bookings</a></li>
         </ul>
       </nav>
@@ -144,7 +134,7 @@
       <section class="hero">
         <h2>Where to next?</h2>
 
-        <form action="#" class="search-container">
+        <form action="#" class="search-container" role="search">
           <label class="field-label">
             From
             <input
@@ -176,13 +166,7 @@
             <input type="date" />
           </label>
 
-          <button
-            type="submit"
-            class="btn btn-search"
-            aria-label="Search flights"
-          >
-            <span aria-hidden="true">Go!</span>
-          </button>
+          <button type="submit" class="btn">Go!</button>
 
           <datalist id="cities">
             <!-- Europe -->
@@ -197,33 +181,22 @@
             <option value="Bucharest (OTP)"></option>
             <option value="Vienna (VIE)"></option>
             <option value="Istanbul (IST)"></option>
-
             <!-- North America -->
             <option value="New York (JFK)"></option>
-            <option value="New York (LGA)"></option>
             <option value="Los Angeles (LAX)"></option>
             <option value="Chicago (ORD)"></option>
-            <option value="San Francisco (SFO)"></option>
             <option value="Toronto (YYZ)"></option>
-            <option value="Atlanta (ATL)"></option>
-            <option value="Dallas (DFW)"></option>
             <option value="Miami (MIA)"></option>
-
-            <!-- Asia & Middle East -->
+            <!-- Asia & ME -->
             <option value="Tokyo (HND)"></option>
-            <option value="Tokyo (NRT)"></option>
             <option value="Dubai (DXB)"></option>
             <option value="Singapore (SIN)"></option>
             <option value="Hong Kong (HKG)"></option>
             <option value="Seoul (ICN)"></option>
             <option value="Doha (DOH)"></option>
             <option value="Bangkok (BKK)"></option>
-            <option value="Beijing (PEK)"></option>
-
             <!-- Oceania & Africa -->
             <option value="Sydney (SYD)"></option>
-            <option value="Melbourne (MEL)"></option>
-            <option value="Cairo (CAI)"></option>
             <option value="Johannesburg (JNB)"></option>
           </datalist>
         </form>
@@ -254,7 +227,7 @@
     </main>
 
     <footer>
-      <p>©Copyright 2050 by nobody. All rights reversed.</p>
+      <p>© 2026 FlightFinder. All rights reserved.</p>
     </footer>
   </body>
 </html>
