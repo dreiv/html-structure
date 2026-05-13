@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "live-server public",
-    "start": "serve public"
+    "dev": "live-server public"
   },
   "devDependencies": {
-    "live-server": "^1.2.2",
-    "serve": "^14.2.6"
+    "live-server": "^1.2.0"
   }
 }
