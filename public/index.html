@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HTML Structure Tutorial</title>
+    <title>HTML Structure Challenge</title>
     <link rel="stylesheet" href="style.css" />
     <style>
       .grid-container {
@@ -11,74 +11,82 @@
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 1.5rem;
         margin-top: 2rem;
-      }
 
-      .card {
-        background: var(--bg-alt);
-        border: 1px solid var(--border);
-        padding: 1.5rem;
-        border-radius: 8px;
-        display: flex;
-        flex-direction: column;
-      }
+        .card {
+          background: var(--bg-alt);
+          border: 1px solid var(--border);
+          padding: 1.5rem;
+          border-radius: 8px;
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.1s ease;
 
-      .card h2 {
-        margin-top: 0;
-        font-size: 1.25rem;
-      }
+          h2 {
+            margin-top: 0;
+            font-size: 1.25rem;
+          }
 
-      .card p {
-        margin-bottom: 1.5rem;
-      }
+          p {
+            margin-bottom: 1.5rem;
+          }
 
-      .card .button {
-        margin-top: auto;
-        display: inline-block;
-        background: var(--accent);
-        color: #fff;
-        padding: 0.6rem;
-        text-align: center;
-        border-radius: 4px;
-        font-weight: bold;
-        text-decoration: none;
-      }
-
-      .card .button:hover {
-        opacity: 0.9;
-        text-decoration: none;
+          .btn {
+            margin-top: auto;
+            text-align: center;
+          }
+        }
       }
     </style>
   </head>
   <body>
     <header>
-      <h1>HTML Learning Hub</h1>
-      <p>Select a module below to view the sub-page structure.</p>
+      <h1>Document Structure Lab</h1>
+      <p>
+        Building semantic skeletons based on
+        <abbr title="Mozilla Developer Network">MDN</abbr>'s content structuring
+        assessment.
+      </p>
     </header>
 
     <main class="grid-container">
       <article class="card">
-        <h2>01. Basic Layout</h2>
-        <p>Exploring header, main, and footer sections.</p>
-        <a href="basic-layout.html" class="button">View Lesson</a>
+        <h2>01. Basic Skeleton</h2>
+        <p>The core layout featuring header, nav, main, and footer.</p>
+        <a href="basic-layout.html" class="btn">View Skeleton</a>
       </article>
 
       <article class="card">
-        <h2>02. Form Mechanics</h2>
-        <p>Input types, labels, and fieldset grouping.</p>
-        <a href="modules/forms/index.html" class="button">View Lesson</a>
+        <h2>02. Main Content & Aside</h2>
+        <p>
+          Structuring the primary article with nested sections and sidebar
+          content.
+        </p>
+        <a href="modules/content-aside/index.html" class="btn"
+          >View Structure</a
+        >
       </article>
 
       <article class="card">
-        <h2>03. Semantic Article</h2>
-        <p>Proper use of article, section, and aside tags.</p>
-        <a href="modules/semantic-article/index.html" class="button"
-          >View Lesson</a
+        <h2>03. Form & Search Navigation</h2>
+        <p>
+          Implementing a semantic search form inside the site-wide navigation.
+        </p>
+        <a href="modules/nav-search/index.html" class="btn"
+          >View Implementation</a
+        >
+      </article>
+
+      <article class="card">
+        <h2>04. Final MDN Assessment</h2>
+        <p>The complete "Structuring documents" challenge response.</p>
+        <a href="modules/mdn-assessment/index.html" class="btn"
+          >View Final Project</a
         >
       </article>
     </main>
 
     <footer>
-      <p>&copy; 2026 Tutorial Dashboard</p>
+      <p>&copy; 2026 MDN Structuring Tutorial</p>
     </footer>
   </body>
 </html>

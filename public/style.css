@@ -58,6 +58,39 @@ a:hover {
   text-decoration: underline;
 }
 
+.btn,
+input[type="submit"] {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: inherit;
+
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    text-decoration: none;
+  }
+
+  &:active {
+    filter: brightness(0.9);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+  }
+}
+
 header {
   border-bottom: 3px solid var(--accent);
   margin-bottom: 2rem;
@@ -72,42 +105,38 @@ nav {
   margin-bottom: 3rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border);
-}
 
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 1.5rem;
-}
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1.5rem;
 
-nav a {
-  font-weight: 600;
-  color: var(--text);
-}
+    a {
+      font-weight: 600;
+      color: var(--text);
+    }
+  }
 
-form {
-  display: flex;
-  gap: 0.5rem;
-}
+  form {
+    display: flex;
+    gap: 0.5rem;
 
-input[type="search"] {
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-}
+    input[type="search"] {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      font-family: inherit;
 
-input[type="submit"] {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  padding: 0.4rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
+      &:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: -1px;
+      }
+    }
+  }
 }
 
 aside {
@@ -116,6 +145,11 @@ aside {
   border-radius: 8px;
   border-left: 5px solid var(--accent);
   margin-top: 2rem;
+
+  h2 {
+    font-size: 1.2rem;
+    margin-top: 0;
+  }
 }
 
 footer {
@@ -125,4 +159,9 @@ footer {
   font-size: 0.9rem;
   color: var(--gray);
   text-align: center;
+}
+
+abbr {
+  text-decoration-color: var(--accent);
+  cursor: help;
 }
