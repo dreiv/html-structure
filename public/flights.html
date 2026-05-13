@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlightFinder | Book Your Next Adventure</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      header nav {
+        margin-bottom: 0;
+        border-bottom: none;
+      }
+
+      .hero {
+        min-height: 64vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          linear-gradient(135deg, var(--accent) 0%, #121212 100%);
+        border-radius: 12px;
+        padding: 4rem 1.5rem;
+        color: white;
+        text-align: center;
+        margin-bottom: 4rem;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero h2 {
+        color: #fff;
+        font-size: clamp(2.2rem, 6vw, 3.5rem);
+        margin-bottom: 2.5rem;
+        text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
+      }
+
+      .search-container {
+        background: var(--bg);
+        padding: 1.25rem;
+        border-radius: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr auto;
+        gap: 1rem;
+        width: 100%;
+        max-width: 1100px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        align-items: end;
+      }
+
+      .field-label {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: left;
+        font-size: 0.75rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: var(--gray);
+        letter-spacing: 0.05rem;
+      }
+
+      .field-label input {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: var(--bg-alt);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+      }
+
+      .field-label input:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: -1px;
+      }
+
+      .btn-search {
+        padding: 0.8rem 1.5rem;
+        height: 3.25rem;
+        border-radius: 6px;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+      }
+
+      /* Responsive: 2x2 Grid for Tablet */
+      @media (max-width: 950px) {
+        .search-container {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .btn-search {
+          grid-column: span 2;
+        }
+      }
+
+      /* Responsive: Single Column for Mobile */
+      @media (max-width: 550px) {
+        .search-container {
+          grid-template-columns: 1fr;
+        }
+
+        .btn-search {
+          grid-column: span 1;
+        }
+
+        .hero {
+          min-height: 50vh;
+          padding: 3rem 1rem;
+        }
+      }
+
+      .grid-destinations {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin: 2.5rem 0;
+      }
+
+      .card {
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1>FlightFinder</h1>
+        <ul>
+          <li><a href="#">Flights</a></li>
+          <li><a href="#">My Bookings</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h2>Where to next?</h2>
+
+        <form action="#" class="search-container">
+          <label class="field-label">
+            From
+            <input
+              type="text"
+              list="cities"
+              value="Timișoara (TSR)"
+              placeholder="Origin"
+              required
+            />
+          </label>
+
+          <label class="field-label">
+            To
+            <input
+              type="text"
+              list="cities"
+              placeholder="Destination"
+              required
+            />
+          </label>
+
+          <label class="field-label">
+            Departure
+            <input type="date" required />
+          </label>
+
+          <label class="field-label">
+            Return
+            <input type="date" />
+          </label>
+
+          <button
+            type="submit"
+            class="btn btn-search"
+            aria-label="Search flights"
+          >
+            <span aria-hidden="true">Go!</span>
+          </button>
+
+          <datalist id="cities">
+            <!-- Europe -->
+            <option value="Timișoara (TSR)"></option>
+            <option value="London (LHR)"></option>
+            <option value="Paris (CDG)"></option>
+            <option value="Frankfurt (FRA)"></option>
+            <option value="Amsterdam (AMS)"></option>
+            <option value="Madrid (MAD)"></option>
+            <option value="Munich (MUC)"></option>
+            <option value="Rome (FCO)"></option>
+            <option value="Bucharest (OTP)"></option>
+            <option value="Vienna (VIE)"></option>
+            <option value="Istanbul (IST)"></option>
+
+            <!-- North America -->
+            <option value="New York (JFK)"></option>
+            <option value="New York (LGA)"></option>
+            <option value="Los Angeles (LAX)"></option>
+            <option value="Chicago (ORD)"></option>
+            <option value="San Francisco (SFO)"></option>
+            <option value="Toronto (YYZ)"></option>
+            <option value="Atlanta (ATL)"></option>
+            <option value="Dallas (DFW)"></option>
+            <option value="Miami (MIA)"></option>
+
+            <!-- Asia & Middle East -->
+            <option value="Tokyo (HND)"></option>
+            <option value="Tokyo (NRT)"></option>
+            <option value="Dubai (DXB)"></option>
+            <option value="Singapore (SIN)"></option>
+            <option value="Hong Kong (HKG)"></option>
+            <option value="Seoul (ICN)"></option>
+            <option value="Doha (DOH)"></option>
+            <option value="Bangkok (BKK)"></option>
+            <option value="Beijing (PEK)"></option>
+
+            <!-- Oceania & Africa -->
+            <option value="Sydney (SYD)"></option>
+            <option value="Melbourne (MEL)"></option>
+            <option value="Cairo (CAI)"></option>
+            <option value="Johannesburg (JNB)"></option>
+          </datalist>
+        </form>
+      </section>
+
+      <section>
+        <h3>Popular Destinations</h3>
+        <div class="grid-destinations">
+          <article class="card">
+            <h4>Paris, France</h4>
+            <p>Direct flights starting from $120.</p>
+            <a href="#">View deals &rarr;</a>
+          </article>
+
+          <article class="card">
+            <h4>Rome, Italy</h4>
+            <p>Explore history and culture this summer.</p>
+            <a href="#">View deals &rarr;</a>
+          </article>
+
+          <article class="card">
+            <h4>Barcelona, Spain</h4>
+            <p>Sun, sand, and incredible food.</p>
+            <a href="#">View deals &rarr;</a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>©Copyright 2050 by nobody. All rights reversed.</p>
+    </footer>
+  </body>
+</html>
