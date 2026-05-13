@@ -39,14 +39,19 @@
       .card p {
         margin-bottom: 1.5rem;
         font-size: 0.95rem;
-        line-height: 1.5;
+        line-height: 1.6;
         flex-grow: 1;
+        color: var(--text-muted); /* Assuming you have a muted text var */
       }
 
       .btn {
         text-align: center;
         border-radius: 6px;
         font-weight: bold;
+        padding: 0.8rem;
+        text-decoration: none;
+        background: var(--accent);
+        color: white;
       }
     </style>
   </head>
@@ -54,9 +59,8 @@
     <header>
       <h1>Document Structure Lab</h1>
       <p>
-        Building semantic skeletons based on
-        <abbr title="Mozilla Developer Network">MDN</abbr>'s content structuring
-        assessment.
+        An exploration of semantic web design, from foundational skeletons to
+        complex search interfaces.
       </p>
     </header>
 
@@ -64,9 +68,10 @@
       <article class="card">
         <h2>01. Basic Skeleton</h2>
         <p>
-          A foundational layout exercise focusing on landmarks like
-          <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, and
-          <code>&lt;footer&gt;</code> to ensure a machine-readable document.
+          The blueprint of a webpage. This exercise uses a
+          <strong>landmark-based layout</strong>
+          to organize content into logical zones, ensuring the site is clear for
+          both users and search engines.
         </p>
         <a href="basic.html" class="btn">View Skeleton</a>
       </article>
@@ -74,10 +79,10 @@
       <article class="card">
         <h2>02. Flight Finder</h2>
         <p>
-          An interactive search interface utilizing
-          <code>&lt;datalist&gt;</code>
-          for global airport suggestions and a grid-based search field that
-          collapses for mobile users.
+          A fast-action search tool using a
+          <strong>flexible grid layout</strong>. It features smart city
+          suggestions and a responsive form that adapts seamlessly from desktop
+          wide-views to mobile screens.
         </p>
         <a href="flights.html" class="btn">Search Flights</a>
       </article>
@@ -85,11 +90,22 @@
       <article class="card">
         <h2>03. Stay Finder</h2>
         <p>
-          A content-heavy layout featuring <code>&lt;article&gt;</code> cards
-          for property listings, <code>&lt;fieldset&gt;</code> for booking data,
-          and dark-mode support via CSS variables.
+          A discovery-focused interface using a
+          <strong>visual gallery layout</strong>. Perfect for browsing rentals,
+          it features organized property cards and interactive forms wrapped in
+          clean, logical groupings.
         </p>
         <a href="stays.html" class="btn">Explore Stays</a>
+      </article>
+
+      <article class="card">
+        <h2>04. Transport Finder</h2>
+        <p>
+          A high-efficiency <strong>list-based comparison layout</strong>.
+          Optimized for travel schedules, it uses "mode switchers" and aligned
+          data columns to help users compare times and prices at a glance.
+        </p>
+        <a href="transport.html" class="btn">Search Routes</a>
       </article>
     </main>
 
