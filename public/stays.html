@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StayFinder | Find Your Home</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .hero {
+        min-height: 64vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          linear-gradient(135deg, var(--accent) 0%, #0f172a 100%);
+        border-radius: 16px;
+        padding: 3rem 1.5rem;
+        color: white;
+        text-align: center;
+        margin-bottom: 4rem;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .hero h2 {
+        color: #fff;
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-bottom: 2rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .search-container {
+        background: var(--bg);
+        padding: 1.5rem;
+        border-radius: 12px;
+        width: 100%;
+        max-width: 1000px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .search-fieldset {
+        border: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+
+        grid-template-columns: 2fr 1fr 1fr 1fr auto;
+        gap: 1rem;
+        align-items: end;
+      }
+
+      .field-label {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: left;
+        font-size: 0.7rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: var(--gray);
+        letter-spacing: 0.05rem;
+      }
+
+      .field-label input {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--bg-alt);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+      }
+
+      .field-label input:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: -2px;
+        border-color: transparent;
+      }
+
+      .btn {
+        height: 3.25rem;
+        border-radius: 6px;
+        font-size: 1rem;
+      }
+
+      @media (max-width: 850px) {
+        .search-fieldset {
+          grid-template-columns: 1fr;
+        }
+
+        .btn {
+          height: 3.5rem;
+          margin-top: 0.5rem;
+        }
+
+        .hero {
+          margin-bottom: 2rem;
+          padding: 2rem 1rem;
+        }
+      }
+
+      .grid-stays {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .stay-card {
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .stay-card:hover {
+        transform: translateY(-8px);
+      }
+
+      .stay-img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background-color: var(--border);
+        object-fit: cover;
+      }
+
+      .stay-content {
+        padding: 1.25rem;
+      }
+
+      .stay-tag {
+        font-size: 0.65rem;
+        font-weight: 700;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin-bottom: 0.25rem;
+        display: block;
+      }
+
+      .gray-text {
+        font-size: 0.9rem;
+        color: var(--gray);
+        margin: 0.5rem 0;
+      }
+
+      .stay-price {
+        font-size: 1.1rem;
+        font-weight: 700;
+        display: block;
+      }
+
+      .stay-price span {
+        font-weight: 400;
+        font-size: 0.85rem;
+        color: var(--gray);
+      }
+
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1>StayFinder</h1>
+        <ul>
+          <li><a href="#" aria-current="page">Stays</a></li>
+          <li><a href="#">My Bookings</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h2>Find your home away from home</h2>
+
+        <form action="#" class="search-container" role="search">
+          <fieldset class="search-fieldset">
+            <legend class="visually-hidden">Search for accommodations</legend>
+
+            <label class="field-label">
+              Destination
+              <input
+                type="text"
+                list="destinations"
+                placeholder="Where are you going?"
+                required
+              />
+            </label>
+
+            <label class="field-label">
+              Check-in
+              <input type="date" required />
+            </label>
+
+            <label class="field-label">
+              Check-out
+              <input type="date" required />
+            </label>
+
+            <label class="field-label">
+              Guests
+              <input type="number" min="1" value="2" />
+            </label>
+
+            <button type="submit" class="btn">Go!</button>
+          </fieldset>
+
+          <datalist id="destinations">
+            <option value="Paris, France"></option>
+            <option value="London, United Kingdom"></option>
+            <option value="New York City, USA"></option>
+            <option value="Tokyo, Japan"></option>
+            <option value="Rome, Italy"></option>
+            <option value="Barcelona, Spain"></option>
+            <option value="Amsterdam, Netherlands"></option>
+            <option value="Dubai, UAE"></option>
+            <option value="Singapore"></option>
+            <option value="Bali, Indonesia"></option>
+            <option value="Prague, Czech Republic"></option>
+            <option value="Vienna, Austria"></option>
+            <option value="Berlin, Germany"></option>
+            <option value="Madrid, Spain"></option>
+            <option value="Lisbon, Portugal"></option>
+            <option value="Kyoto, Japan"></option>
+            <option value="Santorini, Greece"></option>
+            <option value="Venice, Italy"></option>
+            <option value="Bangkok, Thailand"></option>
+            <option value="Sydney, Australia"></option>
+          </datalist>
+        </form>
+      </section>
+
+      <section>
+        <h3>Featured Stays</h3>
+        <div class="grid-stays">
+          <article class="stay-card">
+            <div class="stay-img"></div>
+            <div class="stay-content">
+              <span class="stay-tag">Boutique Hotel</span>
+              <h4>The Urban Attic</h4>
+              <p class="gray-text">Timișoara • 0.5km from center</p>
+              <span class="stay-price">$95 <span>/ night</span></span>
+            </div>
+          </article>
+
+          <article class="stay-card">
+            <div class="stay-img"></div>
+            <div class="stay-content">
+              <span class="stay-tag">Entire Apartment</span>
+              <h4>Skyline Studio</h4>
+              <p class="gray-text">Timișoara • High-rise view</p>
+              <span class="stay-price">$70 <span>/ night</span></span>
+            </div>
+          </article>
+
+          <article class="stay-card">
+            <div class="stay-img"></div>
+            <div class="stay-content">
+              <span class="stay-tag">Resort</span>
+              <h4>Riverside Retreat</h4>
+              <p class="gray-text">Bega River • Spa & Gym</p>
+              <span class="stay-price">$140 <span>/ night</span></span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 StayFinder. Designed for clarity.</p>
+    </footer>
+  </body>
+</html>
