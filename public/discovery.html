@@ -6,14 +6,6 @@
     <title>Explore | Things to Do</title>
     <link rel="stylesheet" href="style.css" />
     <style>
-      /* --- Main Layout Constraint --- */
-      main {
-        max-width: 802px;
-        margin: 0 auto;
-        padding: 0 1rem;
-      }
-
-      /* --- Unified Hero Styling --- */
       .hero-discovery {
         min-height: 40vh;
         display: flex;
@@ -38,94 +30,6 @@
         text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
       }
 
-      /* --- Masonry Grid Logic --- */
-      .discovery-grid {
-        display: grid;
-        /* Adjusted for 3-column fit within 802px */
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        grid-auto-rows: minmax(240px, auto);
-        grid-gap: 1rem;
-        grid-auto-flow: dense;
-        padding: 0;
-        list-style: none;
-        margin-bottom: 4rem;
-      }
-
-      .tile {
-        position: relative;
-        border-radius: 12px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        border: 1px solid var(--border);
-        transition: transform 0.3s ease;
-        cursor: pointer;
-      }
-
-      /* Spanning Logic (Active on wider screens) */
-      @media (min-width: 600px) {
-        .tile:nth-of-type(4n) {
-          grid-column: span 2;
-        }
-        .tile:nth-of-type(7n) {
-          grid-row: span 2;
-        }
-      }
-
-      .tile:hover {
-        transform: translateY(-4px);
-        border-color: var(--accent);
-      }
-
-      /* --- Visual Elements --- */
-      .tile-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        z-index: 1;
-        transition: transform 0.6s ease;
-      }
-
-      .tile:hover .tile-bg {
-        transform: scale(1.1);
-      }
-
-      .tile-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.9) 0%,
-          transparent 100%
-        );
-        z-index: 2;
-      }
-
-      .tile-content {
-        position: relative;
-        z-index: 3;
-        padding: 1.25rem;
-        color: white;
-      }
-
-      .category-tag {
-        background: var(--accent);
-        color: white;
-        font-size: 0.6rem;
-        font-weight: 900;
-        text-transform: uppercase;
-        padding: 0.2rem 0.6rem;
-        border-radius: 4px;
-        margin-bottom: 0.5rem;
-        display: inline-block;
-      }
-
-      /* --- Unified Radio Tabs --- */
       .filter-nav {
         display: flex;
         gap: 0.5rem;
@@ -144,23 +48,117 @@
         color: white;
         font-weight: 700;
         transition: all 0.2s ease;
-        outline: 2px solid transparent;
-        outline-offset: 4px;
       }
 
       input[type="radio"]:checked + .tab-label {
         background: white;
         color: var(--accent);
       }
+
       input[type="radio"]:focus-visible + .tab-label {
-        outline: 2px solid var(--accent); /* Or white if on the dark hero */
+        outline: 2px solid white;
         outline-offset: 2px;
-        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
       }
 
-      /* 3. Also add a slight lift when focused to make it obvious */
-      input[type="radio"]:focus-visible + .tab-label {
-        transform: translateY(-2px);
+      .discovery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        grid-auto-rows: minmax(240px, auto);
+        grid-gap: 1.5rem;
+        grid-auto-flow: dense;
+        padding: 0;
+        list-style: none;
+        margin-bottom: 4rem;
+      }
+
+      .tile {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        background: var(--bg-alt);
+      }
+
+      @media (min-width: 600px) {
+        .tile:nth-of-type(4n) {
+          grid-column: span 2;
+        }
+        .tile:nth-of-type(7n) {
+          grid-row: span 2;
+        }
+      }
+
+      .tile:hover,
+      .tile:focus-within {
+        transform: translateY(-4px);
+        border-color: var(--accent);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .tile-link {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 100%;
+        width: 100%;
+        text-decoration: none;
+        outline: none;
+      }
+
+      .tile-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+        transition: transform 0.6s ease;
+      }
+
+      .tile:hover .tile-img,
+      .tile:focus-within .tile-img {
+        transform: scale(1.05);
+      }
+
+      .tile-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.8) 0%,
+          transparent 60%
+        );
+        z-index: 2;
+      }
+
+      .tile-content {
+        position: relative;
+        z-index: 3;
+        padding: 1.5rem;
+        color: white;
+      }
+
+      .tile-content h3 {
+        margin: 0;
+        color: white;
+        font-size: 1.25rem;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+      }
+
+      .category-tag {
+        background: var(--accent);
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        padding: 0.25rem 0.6rem;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+        display: inline-block;
       }
 
       .visually-hidden {
@@ -171,13 +169,14 @@
         margin: -1px;
         overflow: hidden;
         clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
         border: 0;
       }
     </style>
   </head>
   <body>
     <header>
-      <nav>
+      <nav aria-label="Main Navigation">
         <h1>ExploreLocal</h1>
         <ul>
           <li><a href="#" aria-current="page">Discover</a></li>
@@ -186,11 +185,13 @@
       </nav>
     </header>
 
-    <main>
-      <section class="hero-discovery">
-        <h2>Uncover the city</h2>
+    <main id="main-content">
+      <section class="hero-discovery" aria-labelledby="hero-title">
+        <h2 id="hero-title">Uncover the city</h2>
         <fieldset class="filter-nav">
-          <legend class="visually-hidden">Category Filter</legend>
+          <legend class="visually-hidden">
+            Filter experiences by category
+          </legend>
           <input
             type="radio"
             id="all"
@@ -208,275 +209,348 @@
         </fieldset>
       </section>
 
-      <div class="discovery-grid">
-        <!-- 1-5 -->
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/10/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Nature</span>
-            <h3>Lake View Trail</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/42/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Food</span>
-            <h3>Barista Hub</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/102/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Culture</span>
-            <h3>Town Hall Gallery</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/164/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Nature</span>
-            <h3>Hidden Waterfall</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/225/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Food</span>
-            <h3>Spice Garden</h3>
-          </div>
-        </article>
-
-        <!-- 6-10 -->
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/249/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Culture</span>
-            <h3>Opera Nights</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/324/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Nature</span>
-            <h3>Bird Sanctuary</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/431/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Food</span>
-            <h3>Urban Bakery</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/512/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Culture</span>
-            <h3>Street Art Alley</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/611/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Nature</span>
-            <h3>Cliffside Path</h3>
-          </div>
-        </article>
-
-        <!-- 11-15 -->
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/674/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Food</span>
-            <h3>Night Market</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/723/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Culture</span>
-            <h3>Vinyl Workshop</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/822/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Nature</span>
-            <h3>Canyon Run</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/910/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Food</span>
-            <h3>Bistro Lane</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/1011/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Culture</span>
-            <h3>Jazz Cellar</h3>
-          </div>
-        </article>
-
-        <!-- 16-20 -->
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/1050/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Nature</span>
-            <h3>Mist Mountains</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/1060/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Food</span>
-            <h3>Gourmet Deck</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/1071/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Culture</span>
-            <h3>Craft Bazaar</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/1080/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Nature</span>
-            <h3>River Kayaking</h3>
-          </div>
-        </article>
-        <article class="tile">
-          <div
-            class="tile-bg"
-            style="
-              background-image: url(&quot;https://picsum.photos/id/1084/800&quot;);
-            "
-          ></div>
-          <div class="tile-overlay"></div>
-          <div class="tile-content">
-            <span class="category-tag">Food</span>
-            <h3>Seafood Pier</h3>
-          </div>
-        </article>
-      </div>
+      <ul class="discovery-grid">
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/10/800"
+                alt="Mountain landscape reflecting in a calm lake"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Nature</span>
+                <h3>Lake View Trail</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/42/800"
+                alt="Coffee being prepared in a modern cafe"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Food</span>
+                <h3>Barista Hub</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/102/800"
+                alt="Art exhibits in a spacious town hall gallery"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Culture</span>
+                <h3>Town Hall Gallery</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/164/800"
+                alt="Waterfall flowing through a secluded forest"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Nature</span>
+                <h3>Hidden Waterfall</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/225/800"
+                alt="A variety of fresh spices in an outdoor garden"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Food</span>
+                <h3>Spice Garden</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/249/800"
+                alt="Audience gathered for a night at the opera"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Culture</span>
+                <h3>Opera Nights</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/324/800"
+                alt="Wetlands area dedicated to bird conservation"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Nature</span>
+                <h3>Bird Sanctuary</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/431/800"
+                alt="Freshly baked loaves of bread in an urban setting"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Food</span>
+                <h3>Urban Bakery</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/512/800"
+                alt="Creative murals decorating a narrow urban alley"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Culture</span>
+                <h3>Street Art Alley</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/611/800"
+                alt="Narrow walking path overlooking ocean cliffs"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Nature</span>
+                <h3>Cliffside Path</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/674/800"
+                alt="Vibrant street food stalls at a local night market"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Food</span>
+                <h3>Night Market</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/723/800"
+                alt="People browsing vinyl records at a local shop"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Culture</span>
+                <h3>Vinyl Workshop</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/822/800"
+                alt="Steep trail winding through a desert canyon"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Nature</span>
+                <h3>Canyon Run</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/910/800"
+                alt="Cozy outdoor bistro seating in a quiet lane"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Food</span>
+                <h3>Bistro Lane</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/1011/800"
+                alt="Musicians performing in an underground jazz club"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Culture</span>
+                <h3>Jazz Cellar</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/1050/800"
+                alt="Mountains shrouded in a thick layer of morning mist"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Nature</span>
+                <h3>Mist Mountains</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/1060/800"
+                alt="Fine dining dishes presented on a rooftop deck"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Food</span>
+                <h3>Gourmet Deck</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/1071/800"
+                alt="Handcrafted goods on display at a local craft bazaar"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Culture</span>
+                <h3>Craft Bazaar</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/1080/800"
+                alt="Kayaks traveling down a scenic river"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Nature</span>
+                <h3>River Kayaking</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li class="tile">
+          <article>
+            <a href="#" class="tile-link">
+              <img
+                src="https://picsum.photos/id/1084/800"
+                alt="Fresh seafood served on a wooden pier overlooking the water"
+                class="tile-img"
+                loading="lazy"
+              />
+              <div class="tile-overlay"></div>
+              <div class="tile-content">
+                <span class="category-tag">Food</span>
+                <h3>Seafood Pier</h3>
+              </div>
+            </a>
+          </article>
+        </li>
+      </ul>
     </main>
 
     <footer>
